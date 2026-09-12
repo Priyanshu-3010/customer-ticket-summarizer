@@ -38,6 +38,3 @@ Chat Service
 Google Gemini
  ↓
 Potato Response
-Google Gemini
- ↓
-Potato Response
