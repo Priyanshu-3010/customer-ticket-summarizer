@@ -1,14 +1,17 @@
-# Customer Ticket Summarizer
+# 🥔 Potato - Food Delivery Chatbot
 
-An AI-powered backend application that summarizes long customer support tickets into concise two-line summaries using Node.js, Express, and Google Gemini.
+An AI-powered food delivery chatbot built with Node.js, Express.js, and Google Gemini. Potato helps users with food delivery related queries while maintaining conversation context across messages.
 
 ## Features
 
-- Accepts customer support tickets through a REST API
-- Generates concise two-line summaries using Gemini
-- Validates empty ticket submissions
-- Automated tests for API and summarization logic
-- API key stored securely using environment variables
+- 💬 Conversational AI chatbot
+- 🧠 Maintains conversation context across messages
+- 🍕 Handles food and restaurant related queries
+- 📦 Helps with orders, delivery, cancellations and refunds
+- 🚫 Politely rejects unrelated questions
+- 🔐 API key stored securely using environment variables
+- 🌐 Simple frontend chatbot interface
+- 🧪 Automated tests for backend logic
 
 ## Tech Stack
 
@@ -16,19 +19,25 @@ An AI-powered backend application that summarizes long customer support tickets 
 - Express.js
 - Google Gemini API
 - JavaScript
+- HTML
+- CSS
 - Supertest
 - Node.js Test Runner
 
-## API
-
-### POST `/api/summarize`
-
-Accepts a customer support ticket as plain text.
-
-Example request:
+## How It Works
 
 ```text
-POST http://localhost:3000/api/summarize
-Content-Type: text/plain
-
-The customer has been waiting for their order...
+User
+ ↓
+Potato Frontend
+ ↓
+Express REST API
+ ↓
+Chat Service
+ ↓
+Google Gemini
+ ↓
+Potato Response
+Google Gemini
+ ↓
+Potato Response
