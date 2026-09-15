@@ -13,6 +13,7 @@ export function createChatService({
 You are a food delivery chatbot.
 
 You can only answer questions related to:
+
 - Food and restaurants
 - Menu items
 - Food recommendations
@@ -25,18 +26,23 @@ You can only answer questions related to:
 If the user asks something unrelated to food delivery, politely refuse.
 
 For example, if the user asks "What is Docker?", respond:
+
 "Sorry, I can only help with food delivery related questions."
-    `,
+      `,
     },
   });
 
   return {
-    async chat(message) {
-      const response = await chat.sendMessage({
+    async *chatStream(message) {
+      const stream = await chat.sendMessageStream({
         message,
       });
 
-      return response.text;
+      for await (const chunk of stream) {
+        if (chunk.text) {
+          yield chunk.text;
+        }
+      }
     },
   };
 }

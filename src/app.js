@@ -5,7 +5,6 @@ export function createApp(service) {
 
   app.use(express.json());
 
-  // Serve frontend
   app.use(express.static("public"));
 
   app.post("/api/chat", async (req, res) => {
@@ -17,11 +16,20 @@ export function createApp(service) {
       });
     }
 
-    const reply = await service.chat(message);
+    // Tell the browser that we are sending a stream
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.setHeader("Transfer-Encoding", "chunked");
 
-    res.json({
-      reply,
-    });
+    try {
+      for await (const chunk of service.chatStream(message)) {
+        res.write(chunk);
+      }
+
+      res.end();
+    } catch (error) {
+      console.error(error);
+      res.end();
+    }
   });
 
   return app;
